@@ -31,3 +31,23 @@
    31  ls -l
    32  ansible -m ping dev
    33  history
+   
+Ansible used to install Apache on Host1 & Nginx on Host2
+======================
+firstrunbook.yaml with below code
+
+---
+- hosts: Host1
+  become: yes
+  name: Play1
+  tasks:
+  - name: Execte command 'Date'
+    command: date
+  - name: Install httpd
+    apt: name=apache2 state=latest
+- hosts: Host2
+  become: yes
+  name: Play2
+  tasks:
+  - name: Install httpd
+    apt: name=nginx state=latest
